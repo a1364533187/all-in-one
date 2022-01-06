@@ -1,4 +1,4 @@
-package com.bigcow.cn;
+package com.bigcow.cn.code;
 
 public class code {
     public static void main(String[] args) {
