@@ -9,6 +9,7 @@ public class MinPathSum {
         return minPathSum(grid, m, n);
     }
 
+    // dp[i][j] == min(dp[i-1][j], dp[i][j-1]) +  grid[i][j]
     public int minPathSum(int[][] grid, int m, int n) {
         int[][] minSums = new int[m][n];
         for (int i = 0; i < m; i++) {
