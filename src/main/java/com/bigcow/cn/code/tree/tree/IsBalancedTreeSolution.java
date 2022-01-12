@@ -1,4 +1,6 @@
-package com.bigcow.cn.code.tree;
+package com.bigcow.cn.code.tree.tree;
+
+import com.bigcow.cn.code.tree.tree.TreeNode;
 
 public class IsBalancedTreeSolution {
 
