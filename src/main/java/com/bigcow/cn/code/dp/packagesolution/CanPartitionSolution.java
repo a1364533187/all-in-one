@@ -10,6 +10,7 @@ public class CanPartitionSolution {
     }
 
     // 0-1 背包问题
+    // https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/
     public static boolean canPartition(int[] nums) {
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
