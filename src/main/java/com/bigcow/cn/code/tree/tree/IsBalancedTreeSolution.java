@@ -12,7 +12,7 @@ public class IsBalancedTreeSolution {
 
     boolean isBalanced = true;
 
-    // 妙啊，在后续遍历计算数的深度时， 判断是否是平衡树
+    // 妙啊，在后续遍历计算树的深度时， 判断是否是平衡树
     public int getTreeDepth(TreeNode node) {
         if (node == null) {
             return 0;
