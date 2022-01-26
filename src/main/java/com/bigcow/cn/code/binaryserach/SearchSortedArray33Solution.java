@@ -10,14 +10,16 @@ public class SearchSortedArray33Solution {
             if (nums[mid] == target) {
                 return mid;
             }
-            if (nums[mid] >= nums[0]) { // 第一段有序， 比较nums[0]
+            // 不用比较nums[start] 和 nums[end], 只需关注nums[0] 和 nums[length -1]
+            // 比较只比较其中一个元素
+            if (nums[mid] >= nums[0]) { // 第一段最前段有序， 比较nums[0]
                 if (nums[0] <= target && target < nums[mid]) {
                     end = mid - 1;
                 } else {
                     start = mid + 1;
                 }
             } else {
-                if (nums[mid] < target && target <= nums[nums.length - 1]) { // 第二段有序
+                if (nums[mid] < target && target <= nums[nums.length - 1]) { // 第二段最后段有序
                     start = mid + 1;
                 } else {
                     end = mid - 1;
