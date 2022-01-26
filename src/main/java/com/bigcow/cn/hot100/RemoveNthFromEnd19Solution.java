@@ -14,7 +14,6 @@ public class RemoveNthFromEnd19Solution {
             fast = fast.next;
             n--;
         }
-        //此时fast位置
         ListNode slow = head;
         while (fast != null) {
             slow = slow.next;
