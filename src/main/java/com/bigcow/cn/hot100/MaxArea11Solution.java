@@ -2,6 +2,7 @@ package com.bigcow.cn.hot100;
 
 public class MaxArea11Solution {
 
+    //https://leetcode-cn.com/problems/container-with-most-water/solution/container-with-most-water-shuang-zhi-zhen-fa-yi-do/
     public int maxArea(int[] height) {
         int maxArea = 0;
         int i = 0;
