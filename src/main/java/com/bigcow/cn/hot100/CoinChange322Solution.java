@@ -11,9 +11,9 @@ public class CoinChange322Solution {
     public static int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
         dp[0] = 0;
-        for (int i = 1; i <= amount; i++) {
+        for (int i = 1; i <= amount; i++) { // 背包
             int curMin = Integer.MAX_VALUE;
-            for (int coin : coins) {
+            for (int coin : coins) { // 物品
                 if (i >= coin && dp[i - coin] != -1) {
                     curMin = Math.min(curMin, dp[i - coin] + 1);
                 }
