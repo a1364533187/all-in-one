@@ -7,23 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class Courses207Solution {
+public class Cources210Solution {
 
-    public static void main(String[] args) {
-        int[][] prerequisites = new int[][] { { 3, 0 }, { 3, 1 }, { 4, 1 }, { 4, 2 }, { 5, 3 },
-                { 5, 4 } };
-        System.out.println(canFinish(6, prerequisites));
-    }
-
-    /**
-     * 类似于判断图是否有环
-     * 1、拓扑排序
-     *
-     * @param numCourses
-     * @param prerequisites
-     * @return
-     */
-    public static boolean canFinish(int numCourses, int[][] prerequisites) {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] indegrees = new int[numCourses];
         Map<Integer, List<Integer>> courseMap = new HashMap<>();
         for (int i = 0; i < prerequisites.length; i++) {
@@ -39,8 +25,10 @@ public class Courses207Solution {
             }
         }
         int visitedCourse = 0;
+        int[] res = new int[numCourses];
         while (!degree0Queue.isEmpty()) {
             int degree = degree0Queue.poll();
+            res[visitedCourse] = degree;
             visitedCourse++;
             List<Integer> courses = courseMap.getOrDefault(degree, new ArrayList<>());
             for (int i = 0; i < courses.size(); i++) {
@@ -50,6 +38,10 @@ public class Courses207Solution {
                 }
             }
         }
-        return visitedCourse == numCourses;
+        if (visitedCourse == numCourses) {
+            return res;
+        } else {
+            return new int[] {};
+        }
     }
 }
