@@ -6,6 +6,7 @@ public class FlattenBinaryTreeToLinkedList114Solution {
         traversal(root);
     }
 
+    //就是后序遍历
     private TreeNode traversal(TreeNode root) {
         if (root == null) {
             return root;
