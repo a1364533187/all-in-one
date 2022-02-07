@@ -58,6 +58,22 @@ public class PathSumIII437Solution1 {
             root.left.val = root.val + root.left.val; // 不需要撤销操作， 原因是这里左子树的结果， 并不会影响到右子树
             traversalPreSum(root.left);
 //            root.left.val =  root.left.val - root.val;  原因是root 和 root.left 是不相关的2层
+
+            /*
+            2、是否要回溯：二叉树的问题大部分是不需要回溯的，原因如下：
+            二叉树的递归部分：dfs(root->left),dfs(root->right)已经把可能的路径穷尽了,
+                    因此到任意叶节点的路径只可能有一条，绝对不可能出现另外的路径也到这个满足条件的叶节点的;
+
+            而对比二维数组(例如迷宫问题)的DFS,for循环向四个方向查找每次只能朝向一个方向，并没有穷尽路径，
+            因此某一个满足条件的点可能是有多条路径到该点的
+
+            并且visited数组标记已经走过的路径是会受到另外路径是否访问的影响，这时候必须回溯
+
+            作者：eh-xing-qing
+            链接：https://leetcode-cn.com/problems/path-sum-iii/solution/yi-pian-wen-zhang-jie-jue-suo-you-er-cha-smch/
+            来源：力扣（LeetCode）
+            著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+             */
         }
         if (root.right != null) {
             root.right.val = root.val + root.right.val;
