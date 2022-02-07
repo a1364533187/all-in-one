@@ -6,7 +6,7 @@ import java.util.Map;
 public class PathSumIII437Solution1 {
 
     /**
-     * 树 + 前缀和
+     * 树 + 前缀和: https://leetcode-cn.com/problems/path-sum-iii/solution/qian-zhui-he-di-gui-hui-su-by-shi-huo-de-xia-tian/
      * @param root
      * @param targetSum
      * @return
