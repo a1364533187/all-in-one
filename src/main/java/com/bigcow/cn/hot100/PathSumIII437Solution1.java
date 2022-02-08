@@ -43,6 +43,9 @@ public class PathSumIII437Solution1 {
         freqPreSumMap.put(root.val, freqPreSumMap.getOrDefault(root.val, 0) + 1);
         System.out.println("freqPreSum: " + freqPreSumMap);
         calCountTraversal(root.left, targetSum, count, freqPreSumMap);
+//        freqPreSumMap.put(root.val, freqPreSumMap.getOrDefault(root.val, 0) - 1); // Map 需要撤销操作
+//        freqPreSumMap.put(root.val, freqPreSumMap.getOrDefault(root.val, 0) + 1);
+        // 这里一减一加，相互取消了
         calCountTraversal(root.right, targetSum, count, freqPreSumMap);
         freqPreSumMap.put(root.val, freqPreSumMap.getOrDefault(root.val, 0) - 1); // Map 需要撤销操作？
         // 状态恢复代码的作用就是： 在遍历完一个节点的所有子节点后，将其从map中除去。否则左子树的结果会影响到右子树的结果
