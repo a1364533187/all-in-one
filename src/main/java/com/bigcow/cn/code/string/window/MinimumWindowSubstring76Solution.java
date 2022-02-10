@@ -1,4 +1,4 @@
-package com.bigcow.cn.hot100;
+package com.bigcow.cn.code.string.window;
 
 public class MinimumWindowSubstring76Solution {
 
