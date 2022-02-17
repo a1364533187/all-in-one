@@ -21,7 +21,7 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters159Solution {
         int max = 0;
         while (end < s.length()) {
             char c = s.charAt(end);
-            charIndexMap.put(c, end);
+            charIndexMap.put(c, end); // 先移动， 不符合要求，shrink window
             while (charIndexMap.size() > 2) { //shrink
                 char cc = s.charAt(start);
                 int index = charIndexMap.get(cc);
@@ -30,7 +30,7 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters159Solution {
                 }
                 start++;
             }
-            max = Math.max(end - start + 1, max);
+            max = Math.max(end - start + 1, max); // 符合要求后计算
             end++;
         }
         return Math.max(end - start, max);
