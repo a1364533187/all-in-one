@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class LongestSubstringWithAtMostTwoDistinctCharacters159Solution {
 
     public static void main(String[] args) {
-        String s = "ccbbbaaa";
+        String s = "abc";
         System.out.println(lengthOfLongestSubstringTwoDistinct(s));
     }
 
@@ -33,6 +33,6 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters159Solution {
             max = Math.max(end - start + 1, max); // 符合要求后计算
             end++;
         }
-        return Math.max(end - start, max);
+        return max;
     }
 }
