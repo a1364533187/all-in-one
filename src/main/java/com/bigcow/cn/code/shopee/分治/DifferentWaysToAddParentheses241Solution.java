@@ -21,12 +21,18 @@ public class DifferentWaysToAddParentheses241Solution {
         }
     };
 
+    // 记忆化
+    private static Map<String, List<Integer>> memory = new HashMap<>();
+
     /**
      * 分治： https://leetcode-cn.com/problems/different-ways-to-add-parentheses/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-5-5/
      * @param expression
      * @return
      */
     public static List<Integer> diffWaysToCompute(String expression) {
+        if (memory.containsKey(expression)) {
+            return memory.get(expression);
+        }
         if (expression.isEmpty()) {
             return new ArrayList<>();
         }
@@ -43,6 +49,7 @@ public class DifferentWaysToAddParentheses241Solution {
         List<Integer> ans = new ArrayList<>();
         if (index == expression.length()) { // 只有数字项了， 借宿
             ans.add(num);
+            memory.put(expression, ans);
             return ans;
         }
         for (int i = 0; i < expression.length(); i++) {
@@ -56,8 +63,10 @@ public class DifferentWaysToAddParentheses241Solution {
                         ans.add(map.get(c).apply(l, r));
                     }
                 }
+
             }
         }
+        memory.put(expression, ans);
         return ans;
     }
 
