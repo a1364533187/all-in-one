@@ -12,11 +12,12 @@ public class MinimumWindowSubstring76Solution {
     public String minWindow(String s, String t) {
         int[] win2 = getStrWin256(t);
         int start = 0;
-        int end = -1;
+        int end = 0;
         int[] win1 = new int[256];
         String res = null;
         while (end < s.length()) {
-            while (isValid(win1, win2)) {
+            win1[s.charAt(end)]++; // 先加字符
+            while (isValid(win1, win2)) { // 再shrink window
                 // 记录结果
                 if (res == null || res.length() > end + 1 - start) {
                     res = s.substring(start, end + 1);
@@ -26,10 +27,7 @@ public class MinimumWindowSubstring76Solution {
                 win1[s.charAt(start)]--;
                 start++;
             }
-            end++;
-            if (end < s.length()) {
-                win1[s.charAt(end)]++;
-            }
+            end++; //增加索引
         }
 
         return res == null ? "" : res;

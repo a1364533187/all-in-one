@@ -1,4 +1,4 @@
-package com.bigcow.cn.code.window;
+package com.bigcow.cn.code.string.window;
 
 import java.util.HashMap;
 
