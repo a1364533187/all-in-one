@@ -1,5 +1,7 @@
 package com.bigcow.cn.hot100;
 
+import java.util.Stack;
+
 public class MaximalRectangle85Solution {
 
     public static void main(String[] args) {
@@ -11,108 +13,50 @@ public class MaximalRectangle85Solution {
     }
 
     public static int maximalRectangle(char[][] matrix) {
-        // 统计单行最大的1的个数
-        int maxRow = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            int[] dpRow = new int[matrix[0].length];
-            if (matrix[i][0] == '1') {
-                dpRow[0] = 1;
-                maxRow = 1;
-            }
-            for (int j = 1; j < matrix[0].length; j++) {
-                if (matrix[i][j] == '1') {
-                    dpRow[j] = dpRow[j - 1] + 1;
+        // 将一维的柱状图最大矩形， 转换为二维的最大矩形
+        int[][] new_matrix = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < new_matrix.length; i++) {
+            for (int j = 0; j < new_matrix[0].length; j++) {
+                if (i == 0) {
+                    if (matrix[i][j] == '1') {
+                        new_matrix[i][j] = 1;
+                    } else {
+                        new_matrix[i][j] = 0;
+                    }
                 } else {
-                    dpRow[j] = 0;
-                }
-                maxRow = Math.max(dpRow[j], maxRow);
-            }
-        }
-        // 统计单列最大的1的个数
-        int maxCol = 0;
-        for (int j = 0; j < matrix[0].length; j++) {
-            int[] dpCol = new int[matrix.length];
-            if (matrix[0][j] == '1') {
-                dpCol[0] = 1;
-                maxCol = 1;
-            }
-            for (int i = 1; i < matrix.length; i++) {
-                if (matrix[i][j] == '1') {
-                    dpCol[i] = dpCol[i - 1] + 1;
-                } else {
-                    dpCol[i] = 0;
-                }
-                maxCol = Math.max(dpCol[i], maxCol);
-            }
-        }
-
-        int res = Math.max(maxCol, maxRow);
-
-        // 统计多行最大的矩阵
-        // 1、先改写矩阵， 1左右有0的，置为0， 上下有0的置为0
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (i > 0 && i + 1 < matrix.length && matrix[i - 1][j] == '0'
-                        && matrix[i + 1][j] == '0') {
-                    matrix[i][j] = '0';
-                }
-                if (j > 0 && j + 1 < matrix[0].length && matrix[i][j - 1] == '0'
-                        && matrix[i][j + 1] == '0') {
-                    matrix[i][j] = '0';
+                    if (matrix[i][j] == '1') {
+                        new_matrix[i][j] = new_matrix[i - 1][j] + 1;
+                    } else {
+                        new_matrix[i][j] = 0;
+                    }
                 }
             }
         }
 
-        // 再将冒尖的首行/首列， 尾行/尾列 1置为0
-        for (int i = 0; i < matrix.length; i++) {
-            //j == 0
-            if (matrix[0].length > 1 && matrix[i][1] == '0') {
-                matrix[i][0] = '0';
-            }
-            // j == matrix[0].length - 1;
-            if (matrix[0].length > 1 && matrix[i][matrix[0].length - 2] == '0') {
-                matrix[i][matrix[0].length - 1] = '0';
-            }
+        int max = 0;
+        for (int i = 0; i < new_matrix.length; i++) {
+            max = Math.max(largestRectangleArea(new_matrix[i]), max);
         }
+        return max;
+    }
 
-        for (int j = 0; j < matrix[0].length; j++) {
-            //i == 0
-            if (matrix.length > 1 && matrix[1][j] == '0') {
-                matrix[0][j] = '0';
+    // 单调栈的解法，妙啊, 84 与 85 是关联的
+    // https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/84-by-ikaruga/
+    // bilibili的视频： https://www.bilibili.com/video/BV1jV411S7WJ?p=1&share_medium=iphone&share_plat=ios&share_session_id=298FAEF7-1C0B-4AF9-B39C-0D41C6A93EA2&share_source=WEIXIN&share_tag=s_i&timestamp=1645769733&unique_k=1B8wEaR
+    public static int largestRectangleArea(int[] heights) {
+        int res = 0;
+        Stack<Integer> stack = new Stack<>();
+        int[] new_heights = new int[heights.length + 2];
+        for (int i = 1; i < heights.length + 1; i++)
+            new_heights[i] = heights[i - 1];
+        for (int i = 0; i < new_heights.length; i++) {
+            while (!stack.isEmpty() && new_heights[stack.peek()] > new_heights[i]) {
+                int cur = stack.pop();
+                res = Math.max(res, (i - stack.peek() - 1) * new_heights[cur]);
             }
-            // i == matrix.length - 1;
-            if (matrix.length > 1 && matrix[matrix.length - 2][j] == '0') {
-                matrix[matrix.length - 1][j] = '0';
-            }
-        }
-        // 最后DFS 遍历没有改写好的矩阵
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j] == '1') {
-                    int[] count = new int[1];
-                    DFS(matrix, i, j, count);
-                    res = Math.max(res, count[0]);
-                }
-            }
+            stack.push(i);
         }
         return res;
     }
 
-    private static void DFS(char[][] matrix, int i, int j, int[] count) {
-        if (!isValid(matrix, i, j) || matrix[i][j] == '0' || matrix[i][j] == '2') {
-            return;
-        }
-        if (matrix[i][j] == '1') {
-            count[0]++;
-            matrix[i][j] = '2';
-        }
-        DFS(matrix, i - 1, j, count);
-        DFS(matrix, i + 1, j, count);
-        DFS(matrix, i, j - 1, count);
-        DFS(matrix, i, j + 1, count);
-    }
-
-    private static boolean isValid(char[][] matrix, int i, int j) {
-        return i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length;
-    }
 }
