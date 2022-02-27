@@ -18,7 +18,7 @@ public class SingleNumberII137Solution {
             if (set.contains(nums[i])) {
                 continue;
             }
-            setSum += 1.0 * nums[i] * 3;
+            setSum += 1L * nums[i] * 3;
             set.add(nums[i]);
         }
         return (int) ((setSum - numsSum) / 2);
