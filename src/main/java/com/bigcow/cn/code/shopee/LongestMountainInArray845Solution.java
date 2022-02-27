@@ -18,8 +18,8 @@ public class LongestMountainInArray845Solution {
     private static int spread(int[] arr, int center) {
         int left = center - 1;
         int right = center + 1;
-        if (left < 0 || right >= arr.length
-                || arr[left] >= arr[center] || arr[right] >= arr[center]) {
+        if (left < 0 || right >= arr.length || arr[left] >= arr[center]
+                || arr[right] >= arr[center]) {
             return 0;
         }
         // 可以开始扩散了
