@@ -52,7 +52,7 @@ public class CanPartitionKSubsets698Solution {
             return true;
         }
         for (int i = 0; i < k; i++) {
-            // 加上这个效率就干上去了
+            // 加上这个效率就干上去了, nums[index] 这个元素在buckets[i-1] 时没有放入, buckets[i] ==  buckets[i-1] 也就没有必要放入了 
             if (buckets[i] + nums[index] > target || (i > 0 && buckets[i] == buckets[i - 1])) {
                 continue;
             }
