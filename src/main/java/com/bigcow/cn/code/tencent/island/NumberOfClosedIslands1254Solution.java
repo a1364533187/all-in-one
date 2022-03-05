@@ -1,4 +1,4 @@
-package com.bigcow.cn.code.tencent;
+package com.bigcow.cn.code.tencent.island;
 
 public class NumberOfClosedIslands1254Solution {
 
