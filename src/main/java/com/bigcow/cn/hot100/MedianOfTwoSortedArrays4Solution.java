@@ -9,8 +9,7 @@ public class MedianOfTwoSortedArrays4Solution {
     }
 
     /**
-     * 作者：windliang
-     *     链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-2/
+     * https://www.yinxiang.com/everhub/note/3b91bf89-894f-49be-be84-fb303de515ec
      * @param nums1
      * @param nums2
      * @return
