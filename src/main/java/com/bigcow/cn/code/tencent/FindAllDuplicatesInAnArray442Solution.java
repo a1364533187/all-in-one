@@ -13,6 +13,12 @@ public class FindAllDuplicatesInAnArray442Solution {
         System.out.println();
     }
 
+    /**
+     * 单调栈
+     * https://leetcode-cn.com/problems/remove-k-digits/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-5/
+     * @param nums
+     * @return
+     */
     public static List<Integer> findDuplicates(int[] nums) {
         Set<Integer> res = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
