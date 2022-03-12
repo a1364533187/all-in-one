@@ -37,16 +37,13 @@ public class ReverseNodesInKGroup25Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode nextTail = null;
-        ListNode newHead = head;
         ListNode cur = findKNode(head, k);
-        if (cur != null) {
-            nextTail = cur.next;
-            cur.next = null;
-            newHead = reverse(head);
-        } else {
-            return newHead;
+        if (cur == null) { // 不足K个的链表，直接返回
+            return head;
         }
+        ListNode nextTail = cur.next;
+        cur.next = null;
+        ListNode newHead = reverse(head);
         ListNode nextReverse = reverseKGroup(nextTail, k);
         head.next = nextReverse;
         return newHead;
