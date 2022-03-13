@@ -31,10 +31,10 @@ public class CoinChange2Solution {
         for (int i = 1; i <= coins.length; i++) {
             for (int j = 1; j <= amount; j++) {
                 if (j - coins[i - 1] < 0) {
-                    // 只能使用第 i-1 种硬币
+                    // 和i - 1 中硬币的结果是一样的
                     dp[i][j] = dp[i - 1][j];
                 } else {
-                    // 可以选择使用第i种硬币： dp[i][j - coins[i - 1]] 
+                    // 可以选择使用了i种硬币： dp[i][j - coins[i - 1]] 
                     // 可以不使用第i种硬币： dp[i - 1][j]
                     dp[i][j] = dp[i][j - coins[i - 1]] + dp[i - 1][j];
                 }
