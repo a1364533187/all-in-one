@@ -7,6 +7,13 @@ public class InterleavingString97Solution {
         System.out.println(isInterleave(s1, s2, s3));
     }
 
+    /**
+     * 画交错字符串的图，推理即可
+     * @param s1
+     * @param s2
+     * @param s3
+     * @return
+     */
     public static boolean isInterleave(String s1, String s2, String s3) {
         if (s1.length() + s2.length() != s3.length()) {
             return false;
