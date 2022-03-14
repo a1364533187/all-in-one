@@ -73,6 +73,7 @@ public class MyBlockingQueue {
         this.capacity = capcity;
     }
 
+    // synchronized wait/notify 相当于lock 的一个条件变量
     public void put(int val) throws InterruptedException {
         synchronized (this) { // synchronized 执行完方法体的内容会释放锁
             while (queue.size() == capacity) {
