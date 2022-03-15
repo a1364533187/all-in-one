@@ -1,4 +1,4 @@
-package com.bigcow.cn.code.bytedance;
+package com.bigcow.cn.code.bytedance.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
