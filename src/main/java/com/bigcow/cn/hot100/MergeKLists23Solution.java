@@ -1,65 +1,32 @@
 package com.bigcow.cn.hot100;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class MergeKLists23Solution {
 
+    /**
+     * 采用优先队列实现
+     * @param lists
+     * @return
+     */
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode dumpy = new ListNode(0);
-        ListNode cur = dumpy;
-        while (true) { // 找到了minListNode
-            NodePair nodePair = findMinValue(lists);
-            if (null == nodePair) {
-                break;
-            }
-            // node pair 不为空，说明找到了minValue， 开始搞事情
-            cur.next = nodePair.cur;
-            cur = cur.next;
-            lists[nodePair.key] = nodePair.cur.next;
-            cur.next = null;
+        if (lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length,
+                (o1, o2) -> {
+                    return o1.val -o2.val;
+                });
+        ListNode dummy = new ListNode(0);
+        ListNode p = dummy;
+        for (ListNode node : lists) {
+            if (node != null) queue.add(node);
         }
-        return dumpy.next;
+        while (!queue.isEmpty()) {
+            p.next = queue.poll();
+            p = p.next;
+            if (p.next != null) queue.add(p.next);
+        }
+        return dummy.next;
     }
 
-    // 从lists 中找到最小值,找不到返回null
-    public NodePair findMinValue(ListNode[] lists) {
-        ListNode minListNode = null;
-        int minValue = Integer.MAX_VALUE;
-        int minIndex = -1;
-        for (int i = 0; i < lists.length; i++) {
-            if (null != lists[i] && minValue > lists[i].val) {
-                minValue = lists[i].val;
-                minListNode = lists[i];
-                minIndex = i;
-            }
-        }
-        return minListNode == null ? null : new NodePair(minIndex, minListNode);
-    }
-
-    class NodePair {
-
-        Integer key;
-        ListNode cur;
-
-        public NodePair(Integer key, ListNode cur) {
-            this.key = key;
-            this.cur = cur;
-        }
-    }
-
-    class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }
