@@ -14,7 +14,7 @@ public class RestoreIpAddresses087Solution {
     }
 
     public static List<String> restoreIpAddresses(String s) {
-        if (s.length() > 12) {
+        if (s.length() > 12) { // 如果IP 地址超过12 位， 也不是有效的IP 地址
             return new ArrayList<>();
         }
         List<String> res = new ArrayList<>();
