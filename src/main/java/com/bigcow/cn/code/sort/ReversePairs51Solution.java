@@ -34,6 +34,7 @@ public class ReversePairs51Solution {
             if (nums[curLeft] > nums[curRight]) {
                 newArr[index] = nums[curRight];
                 curRight++;
+                // 举例 L1: 1，7，9 L2: 2,5 逆序对为4
                 count[0] += (mid - curLeft) + 1;
             } else {
                 newArr[index] = nums[curLeft];
