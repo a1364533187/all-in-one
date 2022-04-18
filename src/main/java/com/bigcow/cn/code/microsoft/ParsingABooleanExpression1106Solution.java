@@ -39,7 +39,7 @@ public class ParsingABooleanExpression1106Solution {
     }
 
     /**
-     * |(f, t, f),t, t
+     * |(f, t, f),t, t, split 时切开外层， 不动里层
      * @param expression
      * @return
      */
