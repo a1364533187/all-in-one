@@ -35,6 +35,7 @@ public class Counter {
 
 }
 
+// 测试 commit 的提交
 class CountTask implements Runnable {
 
     private int i;
