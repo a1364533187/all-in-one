@@ -10,6 +10,7 @@ public class LongestSubstringWithoutRepeatingCharacters3Solution {
         System.out.println(lengthOfLongestSubstring(s));
     }
 
+    // 最长子串
     public static int lengthOfLongestSubstring(String s) {
         if (s.isEmpty()) {
             return 0;
